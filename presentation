@@ -1,0 +1,63 @@
+1. Thesis title, author and supervisor name (1 slide)
+	Thesis information:
+	University of Debrecen, Faculty of Informatics
+	Supervisor’s name: Dr. Gál Zoltán
+	Thesis title: Visualization of Wireless Network Status Information with SQL DB
+	
+2. Problem posing, the task to be solved, including the highlighting independent work (1- 2 slides)
+	Monitoring an active communications network, diagnosing faults, and gathering statistics for
+	administration and fine tuning are all significant aspects of network management in the market.
+	Fortunately, leveraging the simple network management protocol SNMP, an application layer
+	protocol assists network engineers in performing activities on the network for gathering statistics
+	and extra information. Several requests are offered by the protocol to perform the necessary
+	network queries. The thesis implementation's main goal is to track managed devices, such as
+	network interfaces. Using the SNMP protocol, the software can track in/out traffic and record the
+	returned data in a sqlite3 database. Furthermore, the software creates a plot by displaying a
+	performance chart based on the stored data. More scenarios can be explored since the program
+	performs the functionality using the object identifier (OID) from the management information base
+	(MIB). A live table is included in the software user interface, in addition to the database, to store
+	information collected from the three primary SNMP requests. The request action sends APIs to
+	the managed device, and the data is collected and displayed in the graphical interface.
+
+3. Brief, factual summary of the principles, methods and technologies used for the solution (slides1-3)
+4. Description of independent work (1-2 slides)
+	Thesis implementation:
+	The development language is for the project is Python and the four major parts to fully
+	implement the project are:
+	1) PyQt5 creates a well-designed graphical user interface (GUI). The library provides two
+	options for designing the front-end: using Designer Qt 5 or hardcoding the components.
+	The library provides the combination of two techniques to distribute the design for better
+	usage. Designer Qt 5 uses a simple drag-and-drop mechanism, then calls the objects within
+	the main class to add further functionality for maximum performance.
+	2) The SNMP requests functions are written using PySNMP, a Python library that is crossplatform. 	 
+	To query information and communicate with the network, the SNMP functions
+	use APIs. The APIs are collected from the GUI inputs and transmitted over the network in
+	a suitable block. The data is received by the software, which then displays it in a table with
+	names and values.
+	3) A Python class is written independently to collect status information for the device's
+	interfaces; each device will almost definitely have many interfaces to connect to the router.
+	To calculate input and output utilization of the interface using "Pandas," the program just
+	collects mean data. Sqlite3 stores these values in the database that has been created.
+	4) Finally, the data plotting phase using "matplotlib" begins with the software swiftly
+	
+5. Conclusions, suggestions, description of further development opportunities (1 slide)
+	The conclusion from the project it can grow more bigger for unlimited future features and implementation 
+	tracking the devices and its traffic is more important than ever the big world of internet is insecure by 
+	the time. Protection for the network is better the infection of devices. The future development includes 
+	uncountable number of features since the protocol receive the traffic from device objects a lot more inner 
+	objects can have its own graph of performance as well as the network interfaces. Additionally it can implement 
+	traps for more security term to notify the network engineer about events happening on the devices 
+
+6. Acknowledgments, bibliography (1 slide)
+	First and foremost, I want to express my gratitude to everyone who has supported me along
+	this journey of close friends. Furthermore, I want to express my heartfelt gratitude to my father
+	and mother, as well as the rest of my family, for their unwavering support, care, and
+	encouragement, without which I would not be able to complete this journey.
+	Second, I'd want to express my gratitude to Dr. Gal Zoltan, my thesis supervisor, for all of his
+	meticulous mentoring, directions, and assistance in guiding me to a successful submission.
+	Finally, I'd like to convey my thankfulness and appreciation to God for bringing this endeavor
+	to fruition. Then I'd want to thank our faculty and my university for all their efforts on behalf
+	of the faculty and for disseminating the rules among the students to make their studies easier,
+	especially during this time.
+	This works has been supported by QoS-HPC-IoT Laboratory at the University of Debrecen,
+	Hungary.

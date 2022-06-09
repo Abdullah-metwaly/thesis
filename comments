@@ -1,0 +1,43 @@
+
+# import sys 
+# from PyQt5.uic import loadUi
+# from PyQt5 import QtWidgets, QtCore, QtGui , uic
+# from PyQt5.QtWidgets import QDialog ,QApplication, QMainWindow, QGridLayout, QWidget, QTableWidget, QTableWidgetItem ,QDesktopWidget, QPushButton
+
+
+
+# class MainWindow():
+#     def __init__(self):
+#         super(MainWindow, self).__init__()
+#         loadUi("snmp-gui.ui",self)
+    
+
+# app = QApplication(sys.argv)
+# mainWindow = QMainWindow()
+# widget = QtWidgets.QStackedWidget()
+# widget.addWidget(mainWindow)
+# widget.setFixedHeight(850)
+# widget.setFixedWidth(1120)
+# widget.show()
+# try :
+#     sys.exit(app.exec_())
+# except :
+    # print("Exiting" )
+  # errorIndication, errorStatus, errorIndex, varBinds = cmdGen.getCmd(
+    # auth,
+    # cmdgen.UdpTransportTarget(( ip , port )),
+    # cmdgen.MibVariable(Oid),
+    # lookupMib=False,
+    # lexicographicMode=False
+    # )
+    
+    # if errorIndication:
+    #     sys.exit()
+    # # elif errorStatus:
+    # #     print('{} at {}'.format(errorStatus.prettyPrint(),
+    # #                     errorIndex and varBinds[int(errorIndex) - 1][0] or '?'))
+    
+    # for oid, val in varBinds:
+    #     print(oid.prettyPrint(), val.prettyPrint())
+    #     # return oid.prettyPrint(), val.prettyPrint()
+    # # print(oid)

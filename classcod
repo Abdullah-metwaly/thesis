@@ -1,0 +1,73 @@
+import sys 
+from PyQt5.uic import loadUi
+from PyQt5 import QtWidgets,  uic
+from numpy import var
+# from PyQt5.QtWidgets import QTableWidget, QDialog ,QApplication, QMainWindow, QGridLayout, QWidget, QTableWidget, QTableWidgetItem ,QDesktopWidget, QPushButton
+from pysnmp.entity.rfc3413.oneliner import cmdgen
+from pysnmp.hlapi import SnmpEngine, CommunityData, UdpTransportTarget,\
+                         ContextData, ObjectType, ObjectIdentity, getCmd
+
+
+
+class Ui(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(Ui, self).__init__() # Call the inherited classes __init__ method
+        uic.loadUi('snmp-gui.ui', self) # Load the .ui file
+        self.show() # Show the GUI
+        #host = ipaddr, port = portnumber
+        self.sendButton.clicked.connect(self.req)
+        # table data
+        # self.loadData()
+        
+    def req(self):
+        global ip, port, auth,req, Oid
+        ip = self.ipaddr.currentText() 
+        port = self.portnumber.currentText()
+        auth = self.communityString.text()
+        req = self.snmpreq.currentText()
+        Oid = self.objectId.text()
+        # print(f"Your ip: {ip} and the port: {port} and the password: {auth} the request: {req}")
+        getRequestFunc()
+        
+    # def loadData(self):
+        # vals = getRequestFunc()
+        # print("inside the table")        
+        # print(getRequestFunc())
+        # row = 0 
+        # self.tableWidget_Results.setRowCount(len(vals))
+        # for val in vals:
+        #     self.tableWidget_Results.setItem(row, 0, QtWidgets.QTableWidgetItem(val))
+        # Starting the get request
+        
+cmdGen = cmdgen.CommandGenerator()
+def getRequestFunc():
+    print(f"Your ip: {ip} and the port: {port} and the password: {auth} the request: {req}")
+    iterator = getCmd(
+    SnmpEngine(),
+    CommunityData(auth, mpModel=1),
+    UdpTransportTarget((ip, port)),
+    ContextData(),
+    ObjectType(ObjectIdentity(Oid))
+    # ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysDescr', 0))
+    )
+    
+    errorIndication, errorStatus, errorIndex, varBinds = next(iterator)
+    
+    if errorIndication:
+        print(errorIndication)
+    elif errorStatus:
+        print('{} at {}'.format(errorStatus.prettyPrint(),
+                            errorIndex and varBinds[int(errorIndex) - 1][0] or '?'))
+
+    for oid, val in varBinds:
+        # print(f'{oid.prettyPrint()} = {val.prettyPrint()}')
+        return oid.prettyPrint(), val.prettyPrint()
+        
+def main():        
+    app = QtWidgets.QApplication(sys.argv)
+    window = Ui()
+    sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()

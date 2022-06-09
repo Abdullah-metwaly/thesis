@@ -1,0 +1,61 @@
+import sys 
+from PyQt5.uic import loadUi
+from PyQt5 import QtWidgets,  uic
+from numpy import var
+# from PyQt5.QtWidgets import QTableWidget, QDialog ,QApplication, QMainWindow, QGridLayout, QWidget, QTableWidget, QTableWidgetItem ,QDesktopWidget, QPushButton
+from pysnmp.entity.rfc3413.oneliner import cmdgen
+from pysnmp.hlapi import SnmpEngine, CommunityData, UdpTransportTarget,\
+                         ContextData, ObjectType, ObjectIdentity, getCmd
+
+
+
+class Ui(QtWidgets.QMainWindow):
+    # ipaddr.setText() 
+    # port = portnumber.currentText()
+    # auth = communityString.text()
+    # reqtype = snmpreq.currentText()
+    # objId = objectId.text()
+    def __init__(self):
+        super(Ui, self).__init__() # Call the inherited classes __init__ method
+        uic.loadUi('snmp-gui.ui', self) # Load the .ui file
+        self.show() # Show the GUI
+        # initializing the input fields for the ui
+        self.ipaddr 
+        # self.portnumber = port
+        # self.communityString = auth
+        # self.snmpreq = reqtype
+        # self.objectId = objId
+        # self.sendButton.clicked.connect(self.req)
+        # table data
+        # self.loadData()
+        # print(f"Your ip: {ip} and the port: {port} and the password: {auth} the request: {req}")
+        # getRequestFunc()
+        self.sendButton.clicked.connect(self.gettingvals)
+        
+        def gettingvals(self) :
+            ip = self.ipaddr.currentText()
+            return ip
+        
+    # def loadData(self):
+        # vals = getRequestFunc()
+        # print("inside the table")        
+        # print(getRequestFunc())
+        # row = 0 
+        # self.tableWidget_Results.setRowCount(len(vals))
+        # for val in vals:
+        #     self.tableWidget_Results.setItem(row, 0, QtWidgets.QTableWidgetItem(val))
+        # Starting the get request
+        
+cmdGen = cmdgen.CommandGenerator()
+def getRequestFunc():
+    a = Ui()
+    print(a.gettingvals())
+        
+def main():        
+    app = QtWidgets.QApplication(sys.argv)
+    window = Ui()
+    sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()
